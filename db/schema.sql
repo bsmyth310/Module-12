@@ -6,30 +6,44 @@ USE employee_info_db;
 
 CREATE TABLE department (COMMENT
 
-id INT NOT NULL AUTO_INCREMENT,
+    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 
-title VARCHAR(30) NOT NULL,
-
-salary DECIMAL(30) NOT NULL,
-
-department_id INT NOT NULL,
-
-PRIMARY KEY (id)
+    name VARCHAR(30) NOT NULL
 
 );
 
-CREATE TABLE department (COMMENT
+CREATE TABLE role (
 
-id INT NOT NULL AUTO_INCREMENT,
+    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 
-first_name VARCHAR(30) NOT NULL,
+    titlee VARCHAR(30),
 
-last_name VARCHAR(30) NOT NULL,
+    salary DECIMAL,
 
-role_id INT NOT NULL,
+    department_id INT,
 
-manager_id INT,
+    FOREIGN KEY (department_id)
 
-PRIMARY KEY (id)
+    REFERENCES department(id)
+
+    ON DELETE SET NULL
+
+);
+
+CREATE TABLE employee (
+
+    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+
+    first_name VARCHAR(30) NOT NULL,
+
+    last_name VARCHAR(30) NOT NULL,
+
+    role_id INT,
+
+    manager_id INT REFERENCES employee(id),
+
+    FOREIGN KEY (role_id)
+
+    REFERENCES role(id)
 
 );
