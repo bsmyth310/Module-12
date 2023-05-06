@@ -39,8 +39,8 @@ const init = function ( answers ) {
     });
   }
 
-  function selectOption ({ options }) {
-    switch (options) {
+  function selectOption (options) {
+    switch (options.answers.options) {
         case 'View All Departments':
             viewDepartments()               
             break;
